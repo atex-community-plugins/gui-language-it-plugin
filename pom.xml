@@ -19,7 +19,7 @@
 
   <groupId>com.atex.plugins</groupId>
   <artifactId>gui-language-it-plugin</artifactId>
-  <version>2.4-SNAPSHOT</version>
+  <version>2.3</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -72,16 +72,16 @@
   <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
-      <id>polopoly-ps-plugins</id>
+      <id>polopoly-pd-plugins</id>
       <name>Polopoly Product Plugins</name>
-      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-ps-plugins</url>
+      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-pd-plugins</url>
       <layout>default</layout>
     </repository>
     <snapshotRepository>
       <uniqueVersion>false</uniqueVersion>
-      <id>polopoly-ps-plugins-snapshots</id>
+      <id>polopoly-pd-plugins-snapshots</id>
       <name>Polopoly PD Plugin Snapshots</name>
-      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-ps-plugins-snapshots/</url>
+      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-pd-plugins-snapshots/</url>
       <layout>default</layout>
     </snapshotRepository>
   </distributionManagement>
