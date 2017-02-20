@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.polopoly</groupId>
+    <artifactId>public</artifactId>
+    <version>10.16.3-fp1</version>
+    <relativePath />
+  </parent>
+
+  <organization>
+    <name>Atex</name>
+    <url>http://www.atex.com</url>
+  </organization>
+
+  <!-- artifact definition -->
+
+  <groupId>com.atex.plugins</groupId>
+  <artifactId>gui-language-it-plugin</artifactId>
+  <version>2.4-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <polopoly.version>10.16.3-fp1</polopoly.version>
+  </properties>
+
+  <name>GUI Language - Italian</name>
+
+  <description><![CDATA[
+    The 'Italian language Admin GUI' plugin adds Italian as an available language in the Polopoly Admin GUI.
+  ]]></description>
+
+
+  <licenses>
+    <license>
+      <name>Atex Polopoly Source Code License</name>
+      <url>http://support.polopoly.com/confluence/display/GREENHOUSE/APSCL</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>products</id>
+      <name>Polopoly Products</name>
+      <email>support@polopoly.com</email>
+      <organization>Atex</organization>
+      <organizationUrl>http://www.atex.com</organizationUrl>
+    </developer>
+  </developers>
+
+  <issueManagement>
+    <system>JIRA</system>
+    <url>http://support.polopoly.com/jira/browse/GONG</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>http://jenkins-ps.polopoly.ninja:8080/view/Plugins/job/plugins%20-%20gui-language-it-plugin/</url>
+  </ciManagement>
+
+  <scm>
+    <connection>scm:git:github.com:atex-community-plugins/gui-language-it-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:atex-community-plugins/gui-language-it-plugin.git</developerConnection>
+    <url>https://github.com/atex-community-plugins/gui-language-it-plugin</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>polopoly-ps-plugins</id>
+      <name>Polopoly Product Plugins</name>
+      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-ps-plugins</url>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>polopoly-ps-plugins-snapshots</id>
+      <name>Polopoly PD Plugin Snapshots</name>
+      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-ps-plugins-snapshots/</url>
+      <layout>default</layout>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>polopoly-public</id>
+      <name>Polopoly Public</name>
+      <url>http://maven.polopoly.com/nexus/content/groups/polopoly-public</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <repositories>
+    <repository>
+      <id>polopoly-public</id>
+      <name>Polopoly Public</name>
+      <url>http://maven.polopoly.com/nexus/content/groups/polopoly-public</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.polopoly</groupId>
+      <artifactId>polopoly</artifactId>
+      <version>${polopoly.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>p-maven-plugin</artifactId>
+        <groupId>com.polopoly.extensions</groupId>
+        <version>${polopoly.version}</version>
+        <configuration>
+          <generatePluginXml>true</generatePluginXml>
+          <optionalPolopolyDir>true</optionalPolopolyDir>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>jboss</groupId>
+            <artifactId>jbossall-client</artifactId>
+            <version>4.0.5</version>
+          </dependency>
+          <dependency>
+            <groupId>com.polopoly</groupId>
+            <artifactId>polopoly</artifactId>
+            <version>${polopoly.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>plugin</id>
+            <goals>
+              <goal>pack</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>test-activate</id>
+            <goals>
+              <goal>pack</goal>
+            </goals>
+            <configuration>
+              <classifier>activate-contentdata</classifier>
+              <generatePluginXml>false</generatePluginXml>
+              <contentDataXmlResources>
+                <activation>
+                  <directory>${basedir}/src/main/activation</directory>
+                  <includes>
+                    <include>activate-italian.xml</include>
+                  </includes>
+                </activation>
+              </contentDataXmlResources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.4.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>1.9</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!-- Attach the site jar when deploying -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.3</version>
+        <executions>
+          <execution>
+            <id>attach-site</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <linkOnly>true</linkOnly>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>project-team</report>
+              <report>cim</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>scm</report>
+              <report>summary</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>
