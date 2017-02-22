@@ -3,7 +3,7 @@
   <content>
     <metadata>
       <contentid>
-	<externalid>p.SystemConfig</externalid>
+        <externalid>p.SystemConfig</externalid>
       </contentid>
     </metadata>
     <component group="parameter" name="locales">en_US,it_IT</component>
