@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.polopoly</groupId>
     <artifactId>public</artifactId>
-    <version>10.16.3-fp1</version>
+    <version>10.16.3-fp3</version>
     <relativePath />
   </parent>
 
@@ -24,7 +24,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <polopoly.version>10.16.3-fp1</polopoly.version>
+    <polopoly.version>10.16.3-fp3</polopoly.version>
   </properties>
 
   <name>GUI Language - Italian</name>
