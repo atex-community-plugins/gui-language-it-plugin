@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.polopoly</groupId>
     <artifactId>public</artifactId>
-    <version>10.16.3-fp3</version>
+    <version>10.16.3-fp4</version>
     <relativePath />
   </parent>
 
@@ -24,7 +24,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <polopoly.version>10.16.3-fp3</polopoly.version>
+    <polopoly.version>10.16.3-fp4</polopoly.version>
   </properties>
 
   <name>GUI Language - Italian</name>
@@ -164,14 +164,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.4.2</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.scm</groupId>
-            <artifactId>maven-scm-provider-gitexe</artifactId>
-            <version>1.9</version>
-          </dependency>
-        </dependencies>
+        <version>2.5.1</version>
       </plugin>
 
       <!-- Attach the site jar when deploying -->
@@ -216,4 +209,41 @@
       </plugin>
     </plugins>
   </reporting>
+
+  <profiles>
+    <profile>
+      <id>deploy</id>
+
+      <distributionManagement>
+        <repository>
+          <name>Polopoly PD Plugins</name>
+          <id>polopoly-pd-plugins</id>
+          <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-pd-plugins</url>
+        </repository>
+        <snapshotRepository>
+          <name>Polopoly PD Plugins Snapshots</name>
+          <id>polopoly-pd-plugins-snapshots</id>
+          <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-pd-plugins-snapshots</url>
+        </snapshotRepository>
+      </distributionManagement>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.3</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
 </project>
