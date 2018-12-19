@@ -24,7 +24,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <polopoly.version>10.16.6</polopoly.version>
+    <polopoly.version>10.18.0</polopoly.version>
   </properties>
 
   <name>GUI Language - Italian</name>
